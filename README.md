@@ -1,52 +1,48 @@
 # Paper Plot Skills
 
-这里是我自己在用的，一套用于**复现和生成学术论文图表**的 AI Skills 工具箱。  
+This is a personal AI Skills toolkit for **reproducing and generating academic paper figures**.
 
-我仔细选取了自己阅读过论文里绘图风格很有参考价值的各种图表，具有**很强的参考意义**，能极大程度**减少绘图时候的重复工作**。
+I carefully selected charts from papers I have read whose visual styles are highly useful as references. These examples can greatly **reduce repetitive work when recreating paper-style plots**.
 
-这个仓库只是提供了一个起始点，从 9 张真实论文图表中提炼出系统化风格参数，支持**按风格填数据**和**从图片复现**两种使用方式。
+This repository is intended as a starting point. It extracts systematic style parameters from 9 real paper figures and supports two workflows: **fill a selected style with your own data** and **reproduce a figure from an image**.
 
-这些skills会随着你的复现过程不断优化。
+These skills will continue to improve as you reproduce more figures.
 
-如果对你有用，麻烦点一个star🌟，鼓励我们不断优化这个仓库！
+If this is useful to you, please leave a star 🌟 to encourage continued improvement of this repository.
 
 ---
 
-## 🎨 预置风格一览
+## 🎨 Preset Style Overview
 
-
-| 风格                                              | 类型  | 来源论文              | 关键特征                             |
+| Style | Type | Source Paper | Key Features |
 | ----------------------------------------------- | --- | ----------------- | -------------------------------- |
-| `[bar_paired_delta](#bar_paired_delta)`         | 柱状图 | MemEvolve         | 配对柱 + 增益箭头，serif 字体              |
-| `[bar_grouped_hatch](#bar_grouped_hatch)`       | 柱状图 | SPICE             | 分组柱 + 斜线填充主方法，柱顶数值               |
-| `[line_confidence_band](#line_confidence_band)` | 折线图 | Self-Distillation | EMA 平滑 + 置信区间阴影，LaTeX 字体         |
-| `[line_training_curve](#line_training_curve)`   | 折线图 | DAPO              | 垂直断点线 + 水平参考线，sans-serif         |
-| `[line_loss_with_inset](#line_loss_with_inset)` | 折线图 | SiameseNorm       | L 形 spine + 轴端箭头 + 右侧 zoom inset |
-| `[scatter_tsne_cluster](#scatter_tsne_cluster)` | 散点图 | MemGen            | t-SNE 聚类 + 圆角彩色注释框，点线网格          |
-| `[scatter_broken_axis](#scatter_broken_axis)`   | 散点图 | Meta-Harness      | 折断 X 轴双面板，多 marker 类型            |
-| `[radar_dual_series](#radar_dual_series)`       | 雷达图 | DoRA              | 正八边形虚线同心网格，双方法对比                 |
-
+| `[bar_paired_delta](#bar_paired_delta)` | Bar chart | MemEvolve | Paired bars + gain arrows, serif font |
+| `[bar_grouped_hatch](#bar_grouped_hatch)` | Bar chart | SPICE | Grouped bars + hatched main method, values above bars |
+| `[line_confidence_band](#line_confidence_band)` | Line chart | Self-Distillation | EMA smoothing + confidence interval shading, LaTeX font |
+| `[line_training_curve](#line_training_curve)` | Line chart | DAPO | Vertical breakpoint lines + horizontal reference line, sans-serif |
+| `[line_loss_with_inset](#line_loss_with_inset)` | Line chart | SiameseNorm | L-shaped spine + axis-end arrows + right-side zoom inset |
+| `[scatter_tsne_cluster](#scatter_tsne_cluster)` | Scatter plot | MemGen | t-SNE clusters + rounded colored annotation boxes, dotted grid |
+| `[scatter_broken_axis](#scatter_broken_axis)` | Scatter plot | Meta-Harness | Broken x-axis dual panel, multiple marker types |
+| `[radar_dual_series](#radar_dual_series)` | Radar chart | DoRA | Octagonal dashed concentric grid, two-method comparison |
 
 ---
 
 ## Skills
 
-
-| Skill                                   | 说明                                    | 触发方式                            |
+| Skill | Description | Trigger Example |
 | --------------------------------------- | ------------------------------------- | ------------------------------- |
-| **[plot-from-data](plot-from-data/)**   | 选择上方任意风格，填入你的数据，生成 dpi=300 论文图        | "用 `bar_grouped_hatch` 风格画我的数据" |
-| **[plot-from-image](plot-from-image/)** | 上传论文截图，自动分析比例/字体/配色并复现为 matplotlib 脚本 | "帮我复现这张图"                       |
-
+| **[plot-from-data](plot-from-data/)** | Choose any style above, fill in your data, and generate a dpi=300 paper-style figure | "Draw my data using the `bar_grouped_hatch` style" |
+| **[plot-from-image](plot-from-image/)** | Upload a paper screenshot, automatically analyze proportions/fonts/colors, and reproduce it as a matplotlib script | "Help me reproduce this figure" |
 
 ---
 
-## 原图与复现总览
+## Original and Reproduction Overview
 
 <table>
 <tr>
-<td align="center"><b>图名</b></td>
-<td align="center"><b>原图</b></td>
-<td align="center"><b>复现图</b></td>
+<td align="center"><b>Figure Name</b></td>
+<td align="center"><b>Original</b></td>
+<td align="center"><b>Reproduction</b></td>
 </tr>
 <tr>
 <td><code>bar_memevolve</code></td>
@@ -100,177 +96,168 @@
 </tr>
 </table>
 
-其中 `classwise_iou` 是直接走 `plot-from-image` 流程新增复现的案例：
+`classwise_iou` is an additional reproduction case produced directly through the `plot-from-image` workflow:
 
-> 输入图片：[`originals/classwise_iou.png`](originals/classwise_iou.png)  
-> 复现脚本：[`plot-from-image/scripts/classwise_iou_table.py`](plot-from-image/scripts/classwise_iou_table.py)
-
----
-
-## 风格图库 · Gallery
+> Input image: [`originals/classwise_iou.png`](originals/classwise_iou.png)  
+> Reproduction script: [`plot-from-image/scripts/classwise_iou_table.py`](plot-from-image/scripts/classwise_iou_table.py)
 
 ---
 
-### 柱状图 Bar Charts
+## Style Gallery
 
-#### `bar_paired_delta` — 配对增益柱
+---
 
-> **来源**：MemEvolve: Meta-Evolution of Agent Memory Systems  
-> serif 字体，配对柱（baseline vs method），箭头标注增益，Y 轴各子图独立  
-> 参数文档：[`plot-from-data/references/bar_paired_delta.md`](plot-from-data/references/bar_paired_delta.md) · 脚本：[`plot-from-data/scripts/bar_memevolve.py`](plot-from-data/scripts/bar_memevolve.py)
+### Bar Charts
+
+#### `bar_paired_delta` — Paired Gain Bars
+
+> **Source**: MemEvolve: Meta-Evolution of Agent Memory Systems  
+> Serif font, paired bars (baseline vs method), arrow-labeled gains, independent y-axis for each subplot  
+> Parameter documentation: [`plot-from-data/references/bar_paired_delta.md`](plot-from-data/references/bar_paired_delta.md) · Script: [`plot-from-data/scripts/bar_memevolve.py`](plot-from-data/scripts/bar_memevolve.py)
 
 <table><tr>
-<td align="center"><b>原图</b></td>
-<td align="center"><b>复现</b></td>
+<td align="center"><b>Original</b></td>
+<td align="center"><b>Reproduction</b></td>
 </tr><tr>
 <td><img src="originals/bar_memevolve.png" width="320"></td>
 <td><img src="repro/bar_memevolve_repro.png" width="320"></td>
 </tr></table>
 
-
 ---
 
-#### `bar_grouped_hatch` — 分组斜线填充柱
+#### `bar_grouped_hatch` — Grouped Bars with Hatch Fill
 
-> **来源**：SPICE: Self-Play In Corpus Environments  
-> LaTeX serif，分组柱 + 主方法白色斜线填充，柱顶数值（最优加粗），开口 L 形 spine  
-> 参数文档：[`plot-from-data/references/bar_grouped_hatch.md`](plot-from-data/references/bar_grouped_hatch.md) · 脚本：[`plot-from-data/scripts/bar_spice.py`](plot-from-data/scripts/bar_spice.py)
+> **Source**: SPICE: Self-Play In Corpus Environments  
+> LaTeX serif, grouped bars + white hatch fill on the main method, values above bars with best value bolded, open L-shaped spine  
+> Parameter documentation: [`plot-from-data/references/bar_grouped_hatch.md`](plot-from-data/references/bar_grouped_hatch.md) · Script: [`plot-from-data/scripts/bar_spice.py`](plot-from-data/scripts/bar_spice.py)
 
 <table><tr>
-<td align="center"><b>原图</b></td>
-<td align="center"><b>复现</b></td>
+<td align="center"><b>Original</b></td>
+<td align="center"><b>Reproduction</b></td>
 </tr><tr>
 <td><img src="originals/bar_spice.png" width="320"></td>
 <td><img src="repro/bar_spice_repro.png" width="320"></td>
 </tr></table>
 
-
 ---
 
-### 折线图 Line Charts
+### Line Charts
 
-#### `line_confidence_band` — 置信区间训练曲线
+#### `line_confidence_band` — Confidence-Band Training Curve
 
-> **来源**：Reinforcement Learning via Self-Distillation  
-> LaTeX Computer Modern serif，EMA 平滑主线，浅色置信区间 `fill_between`，SDPO 加粗图例  
-> 参数文档：[`plot-from-data/references/line_confidence_band.md`](plot-from-data/references/line_confidence_band.md) · 脚本：[`plot-from-data/scripts/line_selfdistill.py`](plot-from-data/scripts/line_selfdistill.py)
+> **Source**: Reinforcement Learning via Self-Distillation  
+> LaTeX Computer Modern serif, EMA-smoothed main line, light confidence interval `fill_between`, bold SDPO legend  
+> Parameter documentation: [`plot-from-data/references/line_confidence_band.md`](plot-from-data/references/line_confidence_band.md) · Script: [`plot-from-data/scripts/line_selfdistill.py`](plot-from-data/scripts/line_selfdistill.py)
 
 <table><tr>
-<td align="center"><b>原图</b></td>
-<td align="center"><b>复现</b></td>
+<td align="center"><b>Original</b></td>
+<td align="center"><b>Reproduction</b></td>
 </tr><tr>
 <td><img src="originals/line_selfdistill_train.png" width="320"></td>
 <td><img src="repro/line_selfdistill_train_repro.png" width="320"></td>
 </tr></table>
 
-
 ---
 
-#### `line_training_curve` — 垂直断点 + 水平参考线
+#### `line_training_curve` — Vertical Breakpoints + Horizontal Reference Line
 
-> **来源**：DAPO: An Open-Source LLM RL System at Scale  
-> sans-serif，四边框，朝外刻度，水平参考线（独立蓝色），两条垂直断点虚线（与曲线同色）  
-> 参数文档：[`plot-from-data/references/line_training_curve.md`](plot-from-data/references/line_training_curve.md) · 脚本：[`plot-from-data/scripts/line_aime.py`](plot-from-data/scripts/line_aime.py)
+> **Source**: DAPO: An Open-Source LLM RL System at Scale  
+> Sans-serif, four-sided frame, outward ticks, horizontal reference line in independent blue, two vertical dashed breakpoint lines matched to curve color  
+> Parameter documentation: [`plot-from-data/references/line_training_curve.md`](plot-from-data/references/line_training_curve.md) · Script: [`plot-from-data/scripts/line_aime.py`](plot-from-data/scripts/line_aime.py)
 
 <table><tr>
-<td align="center"><b>原图</b></td>
-<td align="center"><b>复现</b></td>
+<td align="center"><b>Original</b></td>
+<td align="center"><b>Reproduction</b></td>
 </tr><tr>
 <td><img src="originals/line_aime.png" width="320"></td>
 <td><img src="repro/line_aime_repro.png" width="320"></td>
 </tr></table>
 
-
 ---
 
-#### `line_loss_with_inset` — L 形 spine + 局部放大 inset
+#### `line_loss_with_inset` — L-Shaped Spine + Local Zoom Inset
 
-> **来源**：SiameseNorm: Breaking the Barrier to Reconciling Pre/Post-Norm  
-> LaTeX serif，L 形 spine + 轴端箭头，虚线放大框，黑色虚线连接右侧独立 inset 子图  
-> 参数文档：[`plot-from-data/references/line_loss_with_inset.md`](plot-from-data/references/line_loss_with_inset.md) · 脚本：[`plot-from-data/scripts/line_loss_inset.py`](plot-from-data/scripts/line_loss_inset.py)
+> **Source**: SiameseNorm: Breaking the Barrier to Reconciling Pre/Post-Norm  
+> LaTeX serif, L-shaped spine + axis-end arrows, dashed zoom box, black dashed connector to a separate right-side inset subplot  
+> Parameter documentation: [`plot-from-data/references/line_loss_with_inset.md`](plot-from-data/references/line_loss_with_inset.md) · Script: [`plot-from-data/scripts/line_loss_inset.py`](plot-from-data/scripts/line_loss_inset.py)
 
 <table><tr>
-<td align="center"><b>原图</b></td>
-<td align="center"><b>复现</b></td>
+<td align="center"><b>Original</b></td>
+<td align="center"><b>Reproduction</b></td>
 </tr><tr>
 <td><img src="originals/line_loss_inset.png" width="320"></td>
 <td><img src="repro/line_loss_inset_repro.png" width="320"></td>
 </tr></table>
 
-
 ---
 
-### 散点图 Scatter Plots
+### Scatter Plots
 
-#### `scatter_tsne_cluster` — t-SNE 聚类分布
+#### `scatter_tsne_cluster` — t-SNE Cluster Distribution
 
-> **来源**：MemGen: Weaving Generative Latent Memory for Self-Evolving Agents  
-> LaTeX serif，7 类聚类，圆角注释框（统一深灰边 + 聚类色底），浅灰点线网格，四边框  
-> 参数文档：[`plot-from-data/references/scatter_tsne_cluster.md`](plot-from-data/references/scatter_tsne_cluster.md) · 脚本：[`plot-from-data/scripts/scatter_tsne.py`](plot-from-data/scripts/scatter_tsne.py)
+> **Source**: MemGen: Weaving Generative Latent Memory for Self-Evolving Agents  
+> LaTeX serif, 7 clusters, rounded annotation boxes with uniform dark-gray edge and cluster-colored face, light-gray dotted grid, four-sided frame  
+> Parameter documentation: [`plot-from-data/references/scatter_tsne_cluster.md`](plot-from-data/references/scatter_tsne_cluster.md) · Script: [`plot-from-data/scripts/scatter_tsne.py`](plot-from-data/scripts/scatter_tsne.py)
 
 <table><tr>
-<td align="center"><b>原图</b></td>
-<td align="center"><b>复现</b></td>
+<td align="center"><b>Original</b></td>
+<td align="center"><b>Reproduction</b></td>
 </tr><tr>
 <td><img src="originals/scatter_tsne.png" width="320"></td>
 <td><img src="repro/scatter_tsne_repro.png" width="320"></td>
 </tr></table>
 
-
 ---
 
-#### `scatter_broken_axis` — 折断 X 轴散点图
+#### `scatter_broken_axis` — Broken X-Axis Scatter Plot
 
-> **来源**：Meta-Harness: End-to-End Optimization of Model Harnesses  
-> sans-serif 粗体标签，双面板折断 X 轴（0-50k | 115k/200k），多 marker（★ ○ △ ◆ × ○），折断符仅底边  
-> 参数文档：[`plot-from-data/references/scatter_broken_axis.md`](plot-from-data/references/scatter_broken_axis.md) · 脚本：[`plot-from-data/scripts/scatter_break.py`](plot-from-data/scripts/scatter_break.py)
+> **Source**: Meta-Harness: End-to-End Optimization of Model Harnesses  
+> Bold sans-serif labels, dual-panel broken x-axis (0-50k | 115k/200k), multiple markers (★ ○ △ ◆ × ○), break marks only on the bottom edge  
+> Parameter documentation: [`plot-from-data/references/scatter_broken_axis.md`](plot-from-data/references/scatter_broken_axis.md) · Script: [`plot-from-data/scripts/scatter_break.py`](plot-from-data/scripts/scatter_break.py)
 
 <table><tr>
-<td align="center"><b>原图</b></td>
-<td align="center"><b>复现</b></td>
+<td align="center"><b>Original</b></td>
+<td align="center"><b>Reproduction</b></td>
 </tr><tr>
 <td><img src="originals/scatter_break.png" width="320"></td>
 <td><img src="repro/scatter_break_repro.png" width="320"></td>
 </tr></table>
 
-
 ---
 
-### 雷达图 Radar Chart
+### Radar Chart
 
-#### `radar_dual_series` — 双方法多维对比
+#### `radar_dual_series` — Two-Method Multidimensional Comparison
 
-> **来源**：DoRA: Weight-Decomposed Low-Rank Adaptation  
-> sans-serif，正八边形虚线同心网格，DoRA 深绿粗线 vs LoRA 蓝色细线，数值标注白底，图例左上  
-> 参数文档：[`plot-from-data/references/radar_dual_series.md`](plot-from-data/references/radar_dual_series.md) · 脚本：[`plot-from-data/scripts/radar_dora.py`](plot-from-data/scripts/radar_dora.py)
+> **Source**: DoRA: Weight-Decomposed Low-Rank Adaptation  
+> Sans-serif, octagonal dashed concentric grid, thick dark-green DoRA line vs thin blue LoRA line, white-background value labels, legend in upper left  
+> Parameter documentation: [`plot-from-data/references/radar_dual_series.md`](plot-from-data/references/radar_dual_series.md) · Script: [`plot-from-data/scripts/radar_dora.py`](plot-from-data/scripts/radar_dora.py)
 
 <table><tr>
-<td align="center"><b>原图</b></td>
-<td align="center"><b>复现</b></td>
+<td align="center"><b>Original</b></td>
+<td align="center"><b>Reproduction</b></td>
 </tr><tr>
 <td><img src="originals/radar_dora.png" width="320"></td>
 <td><img src="repro/radar_dora_repro.png" width="320"></td>
 </tr></table>
 
-
 ---
 
-### `plot-from-image` 示例
+### `plot-from-image` Example
 
-#### `classwise_iou` — 类别级结果表
+#### `classwise_iou` — Class-Level Results Table
 
-> **来源**：用户上传论文截图 https://github.com/Trae1ounG/paper-plot-skills/issues/1 \
-> 纯表格式布局，双行结果 + 强弱高亮底色，按图片比例与文字排布直接复现  
-> 输入图片：[`originals/classwise_iou.png`](originals/classwise_iou.png) · 脚本：[`plot-from-image/scripts/classwise_iou_table.py`](plot-from-image/scripts/classwise_iou_table.py)
+> **Source**: User-uploaded paper screenshot https://github.com/Trae1ounG/paper-plot-skills/issues/1 \
+> Pure table-style layout, two result rows + strong/weak highlight background colors, reproduced directly according to the image's proportions and text layout  
+> Input image: [`originals/classwise_iou.png`](originals/classwise_iou.png) · Script: [`plot-from-image/scripts/classwise_iou_table.py`](plot-from-image/scripts/classwise_iou_table.py)
 
 <table><tr>
-<td align="center"><b>原图</b></td>
-<td align="center"><b>复现</b></td>
+<td align="center"><b>Original</b></td>
+<td align="center"><b>Reproduction</b></td>
 </tr><tr>
 <td><img src="originals/classwise_iou.png" width="320"></td>
 <td><img src="repro/classwise_iou_repro.png" width="320"></td>
 </tr></table>
-
 
 ## Star History
 
