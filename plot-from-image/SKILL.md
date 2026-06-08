@@ -3,7 +3,7 @@ name: plot-from-image
 description: |
   Reproduce any academic paper figure from an uploaded image using accumulated style experience.
   Use when: user uploads/attaches a paper figure and asks to reproduce or recreate it;
-  user says "复现这个图", "reproduce this plot", "match this figure", "照着这个图画";
+  user says "reproduce this figure", "reproduce this plot", "match this figure", "draw it based on this image";
   or user provides a paper figure PNG/screenshot and wants Python matplotlib code that generates it.
   Includes analysis workflow for font detection, color extraction, proportion matching,
   and mapping to 8 pre-built styles or creating a new style from scratch.
@@ -42,6 +42,7 @@ If matched → read `../plot-from-data/references/<name>.md` for exact parameter
 ### 3. If No Match → Analyze From Scratch
 
 Read `references/reproduction_guide.md` for the full analysis checklist covering:
+
 - Font family detection (serif vs sans-serif, LaTeX vs not)
 - Spine & tick style (L-shape, 4-sided, arrows, in/out direction)
 - Color identification (tab10 vs custom)
@@ -55,6 +56,7 @@ Write script → python3 <script>.py → visually compare → fix proportions/co
 ```
 
 Key iteration checklist:
+
 - [ ] AR matches original (measure with PIL)
 - [ ] Font family correct (serif for LaTeX papers, sans-serif for system fonts)
 - [ ] Colors within ±10 RGB of original
